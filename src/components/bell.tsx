@@ -1,29 +1,55 @@
-import { useEffect, useState, useRef } from "react";
-import { Box } from "@mui/material";
-import { useLottie, Lottie } from "react-lottie-hook";
-import bell from "../assets/bell-loop.json";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { Box, Button } from "@mui/material";
+import Lottie from "react-lottie-player";
+import bell from "../assets/lottie/bell-loop.json";
 
 const Bell = () => {
-  const [lottieRef, { isPaused, isStopped }, controls] = useLottie({
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-      progressiveLoad: false,
-    },
-    bell,
-  });
+  const bellRef = useRef<HTMLDivElement>(null);
   const [toggle, setToggle] = useState(false);
+  const [goto, setGoto] = useState(0);
 
-  useEffect(() => {}, []);
-  const clickToggle = () => {
+  const clickToggle = useCallback(() => {
     setToggle((prev) => !prev);
-  };
+  }, []);
+
+  useEffect(() => {
+    if (bellRef.current) {
+      console.log(bellRef.current);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!toggle) setGoto(0);
+  }, [toggle]);
 
   return (
     <>
-      <Box sx={{ width: 300, cursor: "pointer" }} onClick={clickToggle}>
-        <Lottie lottieRef={lottieRef} width={300} />
-      </Box>
+      <Button
+        onClick={clickToggle}
+        sx={{
+          position: "absolute",
+          top: "calc(50% - 75px)",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "200px",
+          height: "200px",
+          borderRadius: "50%",
+        }}
+      >
+        <Lottie
+          ref={bellRef}
+          animationData={bell}
+          play={toggle}
+          goTo={goto}
+          style={{
+            width: "200px",
+            height: "200px",
+            margin: "0",
+          }}
+        />
+      </Button>
     </>
   );
 };
+
 export default Bell;

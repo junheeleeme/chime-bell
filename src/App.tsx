@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
-import Load from "./components/load";
+import Container from "@mui/material/Container";
+
+import Header from "./layout/header";
 import Bell from "./components/bell";
 
 const App = () => {
   return (
     <>
-      <Load />
-      <div className="chime-bell-app">
-        <Bell />
-      </div>
+      <Header />
+      <Container component="main" sx={{ position: "relative", height: "100%" }}>
+        <div className="chime-bell-app">
+          <Bell />
+        </div>
+      </Container>
     </>
   );
 };

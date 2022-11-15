@@ -12,10 +12,7 @@ code {
     monospace;
 }
 
-.load-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
+#chime-bell {
   width: 100vw;
   height: 100vh;
 }
