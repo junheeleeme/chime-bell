@@ -1,25 +1,48 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { Box, Button } from "@mui/material";
-import Lottie from "react-lottie-player";
+import { Button } from "@mui/material";
+import Lottie, { LottieProps } from "react-lottie-player";
 import bell from "../assets/lottie/bell-loop.json";
+
+const sound = new Audio("/sound/bell.mp3");
+
+// Bell Size
+const bellWH = "300px";
+
+// Lottie Option
+const defaultOptions: LottieProps = {
+  loop: false,
+  animationData: bell,
+  style: {
+    width: bellWH,
+    height: bellWH,
+    margin: "0",
+  },
+};
 
 const Bell = () => {
   const bellRef = useRef<HTMLDivElement>(null);
   const [toggle, setToggle] = useState(false);
   const [goto, setGoto] = useState(0);
 
-  const clickToggle = useCallback(() => {
-    setToggle((prev) => !prev);
-  }, []);
-
-  useEffect(() => {
-    if (bellRef.current) {
-      console.log(bellRef.current);
+  const clickToggle = () => {
+    if (toggle) {
+      playSound();
+      setToggle((prev) => !prev);
     }
-  }, []);
+  };
+
+  const playSound = () => {
+    sound.currentTime = 0;
+    sound.pause();
+    sound.play();
+  };
 
   useEffect(() => {
-    if (!toggle) setGoto(0);
+    if (!toggle) {
+      setGoto(0);
+      setToggle(true);
+    } else {
+    }
   }, [toggle]);
 
   return (
@@ -28,25 +51,15 @@ const Bell = () => {
         onClick={clickToggle}
         sx={{
           position: "absolute",
-          top: "calc(50% - 75px)",
+          top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "200px",
-          height: "200px",
+          width: bellWH,
+          height: bellWH,
           borderRadius: "50%",
         }}
       >
-        <Lottie
-          ref={bellRef}
-          animationData={bell}
-          play={toggle}
-          goTo={goto}
-          style={{
-            width: "200px",
-            height: "200px",
-            margin: "0",
-          }}
-        />
+        <Lottie ref={bellRef} {...defaultOptions} play={toggle} goTo={goto} />
       </Button>
     </>
   );
