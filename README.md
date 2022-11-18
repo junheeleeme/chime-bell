@@ -3,6 +3,10 @@
 
 ## 기술스택
   
+```
+> npx create-react-app my-prj --template typescript
+```
+  
 - React(CRA)
 - TypeScript
 - Lottie Animation
