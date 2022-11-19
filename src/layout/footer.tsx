@@ -21,6 +21,7 @@ const Footer = () => {
           underline="none"
           target="_blank"
           sx={{ color: "#393E46" }}
+          mr={1}
         >
           {date.getFullYear()}. 꾸생의 DevLog All rights reserved.
         </Link>

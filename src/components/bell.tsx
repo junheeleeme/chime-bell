@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@mui/material";
 import Lottie, { LottieProps } from "react-lottie-player";
 import bell from "../assets/lottie/bell-loop.json";
