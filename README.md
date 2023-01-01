@@ -15,7 +15,7 @@
 
 <br>
 
-## 💻 개발환경
+## 💻 개발환경
 
 ```
 > npx create-react-app my-prj --template typescript
