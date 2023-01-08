@@ -32,7 +32,7 @@ const Header = () => {
 
           <IconButton
             title="GitHub Repository"
-            href="https://github.com/juni-btc/chime-bell"
+            href="https://github.com/macjjuni/chime-bell"
             target="_blank"
             size="small"
           >
